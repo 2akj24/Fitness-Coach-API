@@ -5,7 +5,7 @@ import json
 app = Flask(__name__)
 
 # 1. MAKE SURE THIS IS CORRECT
-OPENROUTER_API_KEY = "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" 
+OPENROUTER_API_KEY = "Private" 
 
 @app.route('/')
 def index():
