@@ -1,4 +1,4 @@
-# Fitness Coach API
+# Fitness Coach 
 
 ## 📌 Description
 A Flask-based web application that provides diet recommendations based on user input.
