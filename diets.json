@@ -1,0 +1,22 @@
+{
+  "bulk": {
+    "veg": {
+      "homemade": ["Paneer Paratha with Curd", "Soya Chunk Pulao (50g Soya)", "Sattu Shake (4 tbsp Sattu)"],
+      "whey": ["Oats with 1 scoop Whey", "Whey Protein Fruit Smoothie"]
+    },
+    "nonveg": {
+      "homemade": ["Chicken Breast (200g) with Rice", "Whole Egg Omelet (4 eggs)"],
+      "whey": ["Whey Isolate with Banana", "Post-workout Whey with Milk"]
+    }
+  },
+  "cut": {
+    "veg": {
+      "homemade": ["Moong Dal Chilla", "Boiled Sprouts Salad", "Roasted Paneer (Low Fat)"],
+      "whey": ["Whey with Water", "Casein Shake before bed"]
+    },
+    "nonveg": {
+      "homemade": ["Boiled Egg Whites (6)", "Grilled Fish with Steamed Veggies"],
+      "whey": ["Whey with Water", "Post-workout Whey"]
+    }
+  }
+}

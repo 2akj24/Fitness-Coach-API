@@ -1,0 +1,252 @@
+/* static/style.css */
+
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --dark-bg: #121212;
+    --card-bg: #1e1e1e;
+    --text-light: #f8f9fa;
+    --accent-color: #00d4ff;
+}
+/* Header and Logo Styling */
+/* Layout Styling */
+.navbar-header {
+    background-color: #1a1a1a;
+    padding: 15px 40px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Pushes the 'Brand Group' left and 'Logo' right */
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+.brand-group {
+    display: flex;
+    flex-direction: column; /* This forces the tagline UNDER the name */
+    align-items: flex-start; /* Aligns both to the left edge */
+    flex: 1; /* Allows this group to take up the available left-side space */
+}
+
+.brand-name {
+    font-size: 4.5rem; 
+    font-weight: 900;
+    color: #fff;
+    white-space: nowrap; /* Keeps 'GURUJI FITNESS' on one single line */
+    margin: 0;
+    line-height: 1;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    margin: 5px 0 0 0; /* 5px gap below the title */
+    padding: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.logo-img {
+    width: 140px; /* Larger size */
+    height: 140px;
+    border-radius: 50%;
+    border: 4px solid var(--accent-color);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.1);
+}
+/* Create the side-by-side layout */
+.main-content-grid {
+    display: flex;
+    gap: 30px; /* Space between the two cards */
+    align-items: stretch; /* Makes both cards the same height */
+}
+
+.form-section {
+    flex: 2; /* Takes up 2 parts of space (66%) */
+}
+
+.info-section {
+    flex: 1; /* Takes up 1 part of space (33%) */
+    border-left: 2px solid var(--accent-color);
+}
+
+/* Styling for the list inside the info box */
+.workout-list {
+    list-style: none;
+    padding: 0;
+}
+
+.workout-list li {
+    background: #2a2a2a;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.desi-tip {
+    background: rgba(0, 212, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px dashed var(--accent-color);
+    font-size: 0.85rem;
+}
+
+/* IMPORTANT: On mobile, stack them vertically again */
+@media (max-width: 992px) {
+    .main-content-grid {
+        flex-direction: column;
+    }
+    .form-section, .info-section {
+        flex: none;
+        width: 100%;
+    }
+}
+
+/* Modal / Popup Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 600px;
+    margin-top: 5%;
+    border-radius: 20px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* Ensure the main container doesn't hug the header too tight */
+.container {
+    margin-top: 20px;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+}
+
+h2 {
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    text-shadow: 0px 2px 10px rgba(0, 212, 255, 0.3);
+}
+
+/* Card Styling */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid #333;
+    border-radius: 15px;
+    color: var(--text-light);
+}
+
+/* Form Controls */
+label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #bbb;
+}
+
+.form-control, .form-select {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: #333;
+    border-color: var(--accent-color);
+    color: #fff;
+    box-shadow: 0 0 0 0.25rem rgba(0, 212, 255, 0.25);
+}
+
+/* Button Styling */
+.btn-primary {
+    background: linear-gradient(45deg, #007bff, #00d4ff);
+    border: none;
+    font-weight: 700;
+    padding: 12px;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+}
+
+/* Result Box Styling */
+#result {
+    background-color: #1e1e1e;
+    border-left: 5px solid var(--accent-color);
+    font-family: 'Courier New', Courier, monospace; /* Gives it a technical 'coach' feel */
+    font-size: 0.95rem;
+    color: #e0e0e0;
+    line-height: 1.8;
+}
+
+/* Responsive adjustments for the big header */
+@media (max-width: 992px) {
+    .brand-name {
+        font-size: 3rem;
+        letter-spacing: 3px;
+    }
+    .logo-img {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column; /* Stacks logo under text on mobile */
+        text-align: center;
+        gap: 20px;
+    }
+    .brand-group {
+        align-items: center; /* Centers text on mobile */
+    }
+    .brand-name {
+        font-size: 2.5rem;
+    }
+    .tagline {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+}

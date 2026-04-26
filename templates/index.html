@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Adaptive Fitness Coach</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="navbar-header">
+        <div class="header-container">
+            <div class="brand-group">
+                <h1 class="brand-name">GURUJI FITNESS</h1>
+                <p class="tagline">Personalized Desi Diets & Modern Workouts Plans</p>
+            </div>
+            <div class="logo-wrapper">
+                <img src="{{ url_for('static', filename='Logo.png') }}" 
+                     alt="Logo" 
+                     class="logo-img" 
+                     id="logoTrigger">
+            </div>
+        </div> 
+    </header>
+
+    <div id="logoModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="fullLogo">
+    </div>
+
+    <div class="ontainer-fluid mt-5 px-5">
+        <div class="main-content-grid">
+            <div class="card p-4 shadow form-section">
+                <form id="planForm">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label>Weight (kg)</label>
+                            <input type="number" name="weight" class="form-control" placeholder="e.g. 75" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Height (cm)</label>
+                            <input type="number" name="height" class="form-control" placeholder="e.g. 175" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>Age</label>
+                            <input type="number" name="age" class="form-control" placeholder="e.g. 21" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Fitness Goal</label>
+                        <select name="goal" class="form-select">
+                            <option value="bulk">Bulking (Muscle Gain)</option>
+                            <option value="cut">Cutting (Fat Loss)</option>
+                            <option value="maintain">Maintenance</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Diet Preference</label>
+                        <select name="diet_type" class="form-select">
+                            <option value="veg">Vegetarian (Indian)</option>
+                            <option value="nonveg">Non-Vegetarian (Indian)</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Protein Source</label>
+                        <select name="protein_pref" class="form-select">
+                            <option value="homemade">Home-made (Sattu, Paneer, Dahi)</option>
+                            <option value="whey">Whey Protein Supplement</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="btn btn-primary w-100">
+                        Generate Personalized Plan
+                    </button>
+                </form>
+            </div>
+
+            <div class="card p-4 shadow info-section">
+                <h3 class="text-info">Popular Workout Splits</h3>
+                <hr style="border-color: #444;">
+                <ul class="workout-list">
+                    <li><strong>Push/Pull/Legs:</strong> 6 days/week for maximum growth.</li>
+                    <li><strong>Upper/Lower:</strong> 4 days/week for great recovery.</li>
+                    <li><strong>Bro Split:</strong> 5 days/week focusing on one muscle.</li>
+                    <li><strong>Full Body:</strong> 3 days/week for busy students.</li>
+                </ul>
+                <div class="desi-tip mt-4">
+                    <p>💡 <strong>Guruji Tip:</strong> Always prioritize 1g protein per lb of bodyweight even on rest days!</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading" class="text-center mt-4" style="display:none;">
+            <div class="spinner-border text-info" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2 text-info">Coach is analyzing your data and preparing your Indian diet...</p>
+        </div>
+
+        <div id="result" class="mt-5 p-4 shadow rounded" style="display:none;"></div>
+    </div>
+
+    <script>
+        // Logo Modal Logic
+        const modal = document.getElementById("logoModal");
+        const img = document.getElementById("logoTrigger");
+        const modalImg = document.getElementById("fullLogo");
+        const span = document.querySelector(".close-modal");
+
+        img.onclick = function() {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Plan Generation Logic
+        const planForm = document.getElementById('planForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const loading = document.getElementById('loading');
+        const resultDiv = document.getElementById('result');
+
+        planForm.onsubmit = async (e) => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            loading.style.display = 'block';
+            resultDiv.style.display = 'none';
+
+            const formData = new FormData(planForm);
+            
+            try {
+                const response = await fetch('/get_plan', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                resultDiv.innerText = data.plan;
+                resultDiv.style.display = 'block';
+            } catch (error) {
+                alert("Error connecting to the coach. Please check your API key or server.");
+            } finally {
+                submitBtn.disabled = false;
+                loading.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html> 
