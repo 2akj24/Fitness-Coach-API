@@ -17,3 +17,13 @@ A Flask-based web application that provides diet recommendations based on user i
 ```bash
 pip install -r requirements.txt
 python app.py
+```
+# 📷 Screenshots
+<img width="1894" height="861" alt="image" src="https://github.com/user-attachments/assets/dba4b386-4e98-49b6-90d6-821dea80d485" />
+
+
+
+# 🌐 Future Improvements
+Add API endpoints
+Add database
+Deploy online
